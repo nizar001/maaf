@@ -1,0 +1,144 @@
+:root{--bg1:#ffe0ee;--bg2:#e4dcff;--card:#ffffffe6;--tx:#5b2447;--mu:#85496f;--pk:#ff5c9d;--pk2:#ff9ac1;--ln:#ffb8d4}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#2b1431;--bg2:#1d1842;--card:#3b2349e6;--tx:#ffe8f3;--mu:#e0b4d2;--ln:#6a3d78}}
+:root[data-theme="dark"]{--bg1:#2b1431;--bg2:#1d1842;--card:#3b2349e6;--tx:#ffe8f3;--mu:#e0b4d2;--ln:#6a3d78}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{position:relative;overflow:hidden;overscroll-behavior:none;touch-action:manipulation;font-family:'Baloo 2','Nunito',system-ui,sans-serif;color:var(--tx);background:linear-gradient(160deg,var(--bg1),var(--bg2));text-align:center;-webkit-tap-highlight-color:transparent}
+/* user-select:none HANYA di elemen dekorasi, bukan body (biar input bisa diketik) */
+button,.bear,.po,.fl,.cf,.bu,#ts{-webkit-user-select:none;user-select:none}
+h1,h2,h3,p{margin:0}
+h1,h2{font-size:2rem;font-weight:800;line-height:1.15}
+h3{font-size:1.3rem;font-weight:800}
+p{color:var(--mu);font-size:1.05rem;font-weight:500}
+
+.sc{position:absolute;inset:0;z-index:1;overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 20px) 20px calc(env(safe-area-inset-bottom,0px) + 20px);display:flex;opacity:0;visibility:hidden;pointer-events:none;transform:scale(.9) translateY(30px);transition:opacity .5s,transform .7s cubic-bezier(.3,1.5,.5,1),visibility .7s}
+.sc.on{opacity:1;visibility:visible;pointer-events:auto;transform:none}
+.in{margin:auto;width:100%;max-width:380px;display:flex;flex-direction:column;align-items:center;gap:14px}
+
+.w{display:inline-block;white-space:nowrap}
+.w>span{display:inline-block;animation:lt 1.8s ease-in-out infinite;animation-delay:calc(var(--i)*.07s)}
+@keyframes lt{0%,55%,100%{transform:none}25%{transform:translateY(-9px) rotate(-7deg) scale(1.15)}}
+
+.bw{display:flex;flex-direction:column;align-items:center}
+.bear{font-size:96px;line-height:1;transform-origin:50% 100%;animation:bob 1.6s ease-in-out infinite;cursor:pointer}
+.sm .bear{font-size:60px}
+.bear.talk{animation-duration:.5s}
+.bear.sq{animation:sq .55s}
+.shd{display:block;width:64px;height:10px;margin-top:4px;border-radius:50%;background:#5b244726;animation:sd 1.6s ease-in-out infinite}
+.sm .shd{display:none}
+@keyframes bob{0%,100%{transform:scale(1.1,.9)}45%{transform:translateY(-20px) scale(.94,1.06) rotate(-6deg)}70%{transform:translateY(-10px) rotate(5deg)}}
+@keyframes sd{45%{transform:scale(.55);opacity:.4}}
+@keyframes sq{30%{transform:scale(1.35,.65)}60%{transform:translateY(-26px) scale(.8,1.25) rotate(12deg)}}
+
+input,textarea{width:100%;height:56px;border-radius:28px;border:3px solid var(--ln);background:var(--card);color:var(--tx);font:700 1.1rem 'Baloo 2',system-ui,sans-serif;font-size:max(16px,1.1rem);text-align:center;outline:none;-webkit-user-select:text;user-select:text;-webkit-appearance:none;appearance:none;transition:transform .3s cubic-bezier(.3,1.6,.5,1),box-shadow .3s,border-color .3s}
+input::placeholder,textarea::placeholder{color:var(--mu);opacity:.7}
+input:focus,textarea:focus{border-color:var(--pk);transform:scale(1.04);box-shadow:0 0 0 6px #ff5c9d33}
+
+.btn{min-height:56px;padding:0 30px;border:0;border-radius:28px;font:800 1.15rem 'Baloo 2',system-ui,sans-serif;color:#fff;background:linear-gradient(135deg,var(--pk),var(--pk2));box-shadow:0 6px 0 #d93d7d;cursor:pointer;transition:transform .6s cubic-bezier(.3,1.5,.5,1)}
+.btn:active{translate:0 4px;box-shadow:0 2px 0 #d93d7d}
+.btn:focus-visible,#mu:focus-visible{outline:3px solid var(--tx);outline-offset:3px}
+.go{animation:jel 2s ease-in-out infinite}
+.yes{animation:pu 1s ease-in-out infinite;min-width:200px}
+.no{background:#a48fb3;box-shadow:0 6px 0 #7d6a8c}
+.no.sh{animation:shk .45s}
+.no:disabled{pointer-events:none}
+@keyframes jel{0%,100%{scale:1}30%{scale:1.08 .92}50%{scale:.95 1.06}70%{scale:1.03 .98}}
+@keyframes pu{50%{scale:1.07}}
+@keyframes shk{20%{rotate:-12deg}40%{rotate:10deg}60%{rotate:-8deg}80%{rotate:5deg}}
+
+.msg{background:var(--card);color:var(--tx);border-radius:22px;padding:14px 16px;min-height:150px;width:100%;line-height:1.35;font-weight:600;font-size:1.05rem;box-shadow:0 6px 18px #ff5c9d33}
+.q{display:none;flex-direction:column;align-items:center;gap:16px;padding-top:6px}
+.q.on{display:flex;animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{opacity:0;transform:scale(.5) translateY(30px)}}
+
+.ph{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.po{width:92px;background:#fff;padding:6px 6px 20px;border-radius:6px;box-shadow:0 6px 16px #0003;transform:rotate(var(--r))}
+.po div{position:relative;aspect-ratio:1;border-radius:3px;background:linear-gradient(135deg,#ffd0e2,#d9d0ff);display:grid;place-items:center;font-size:2.2rem;overflow:hidden}
+.po img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sc.on .po{animation:poin .8s cubic-bezier(.3,1.7,.5,1) backwards,sw 3s ease-in-out .8s infinite alternate}
+.sc.on .hop .po{animation:hp .45s ease-in-out infinite alternate}
+.po:nth-child(2){animation-delay:.15s,.95s}.po:nth-child(3){animation-delay:.3s,1.1s}
+@keyframes poin{from{scale:.1;opacity:0;translate:0 -80px}}
+@keyframes sw{to{transform:rotate(calc(var(--r) * -1)) translateY(-6px)}}
+@keyframes hp{to{transform:translateY(-18px) rotate(0) scale(1.08)}}
+
+#mu{position:fixed;z-index:5;right:14px;top:calc(env(safe-area-inset-top,0px) + 12px);width:46px;height:46px;border-radius:50%;border:0;background:var(--card);font-size:1.3rem;box-shadow:0 3px 10px #0002}
+#ts{position:fixed;z-index:9;left:50%;top:calc(env(safe-area-inset-top,0px) + 18px);translate:-50% -250%;max-width:92vw;background:#fff;color:#5b2447;font:800 1.1rem 'Baloo 2',system-ui,sans-serif;padding:10px 22px;border-radius:24px;box-shadow:0 8px 22px #0003;white-space:nowrap;transition:translate .4s cubic-bezier(.3,1.7,.5,1)}
+#ts.on{translate:-50% 0}
+
+.fl,.cf,.bu{position:fixed;pointer-events:none;will-change:transform}
+.fl{z-index:0;top:105%;animation:up linear forwards}
+.cf{z-index:8;top:-8vh;animation:dn linear forwards}
+.fl>span,.cf>span{display:block;animation:sy 2.2s ease-in-out infinite alternate}
+.bu{z-index:9;font-size:22px;animation:bu .9s ease-out forwards}
+@keyframes up{to{transform:translateY(-120vh) rotate(40deg)}}
+@keyframes dn{to{transform:translateY(115vh) rotate(540deg)}}
+@keyframes sy{from{transform:translateX(-22px)}to{transform:translateX(22px)}}
+@keyframes bu{from{transform:translate(-50%,-50%) scale(.3)}70%{opacity:1}to{transform:translate(calc(-50% + var(--tx)),calc(-50% + var(--ty))) scale(1.2) rotate(30deg);opacity:0}}
+
+@media(max-height:640px){.bear{font-size:64px}h1,h2{font-size:1.6rem}.msg{min-height:120px}.sm .bear{display:none}}
+@media(prefers-reduced-motion:reduce){.w>span,.bear,.shd,.go,.yes,.po,.fl>span,.cf>span{animation:none!important}}
+
+/* ===== layar potret (kolom HP di tengah) ===== */
+body{display:grid;place-items:center;background:#f6cfe0}
+@media(prefers-color-scheme:dark){body{background:#120a17}}
+#app{position:relative;width:min(100vw,430px);height:100vh;height:100dvh;overflow:hidden;contain:paint;background:linear-gradient(160deg,var(--bg1),var(--bg2))}
+@media(min-width:520px){#app{height:min(100vh,880px);height:min(100dvh,880px);border-radius:34px;box-shadow:0 24px 70px #0006,0 0 0 8px #0003}}
+.fl,.cf,.bu,#mu,#ts{position:absolute}
+.fl{left:auto}
+/* ===== beruang gambar ===== */
+.bear{width:150px;font-size:0;transform-origin:50% 100%}
+.bear svg{width:100%;height:auto;display:block;overflow:visible}
+.sm .bear{width:104px}
+.eh,.ms,.mh,.te,.br,.mt{display:none}
+[data-m=sad] .mn,[data-m=cry] .mn,[data-m=happy] .mn,[data-m=happy] .ey{display:none}
+[data-m=sad] .ms,[data-m=cry] .ms,[data-m=sad] .br,[data-m=cry] .br,[data-m=cry] .te,[data-m=happy] .eh,[data-m=happy] .mh{display:inline}
+.talk .mn,.talk .ms,.talk .mh{display:none}.talk .mt{display:inline}
+.hd{transform-origin:100px 150px;animation:hn 2.4s ease-in-out infinite}
+.ey{transform-origin:100px 90px;animation:bl 4s infinite}
+.pup{transform:translate(var(--ex,0),var(--ey,0));transition:transform .15s}
+.bl{animation:bp 1.6s ease-in-out infinite alternate}
+.ar.r{transform-origin:142px 148px;animation:wv 1.1s ease-in-out infinite}
+.ar.l{transform-origin:58px 148px}
+[data-m=happy] .ar.r{animation:cr .35s ease-in-out infinite alternate}
+[data-m=happy] .ar.l{animation:cl .35s ease-in-out infinite alternate}
+[data-m=cry] .hd{animation:cy .25s linear infinite}
+.te{animation:tr .8s ease-in infinite}
+.mt{transform-origin:100px 114px;animation:mt .22s ease-in-out infinite alternate}
+@keyframes hn{50%{transform:rotate(4deg)}}
+@keyframes bl{0%,93%,100%{transform:none}96%{transform:scaleY(.08)}}
+@keyframes bp{to{opacity:.4}}
+@keyframes wv{50%{transform:rotate(-40deg)}}
+@keyframes cr{to{transform:rotate(-150deg)}}
+@keyframes cl{to{transform:rotate(150deg)}}
+@keyframes cy{50%{transform:translateX(2px)}}
+@keyframes tr{from{transform:translateY(0);opacity:1}to{transform:translateY(24px);opacity:0}}
+@keyframes mt{to{transform:scaleY(.25)}}
+@media(max-height:720px){.bear{width:112px}.sm .bear{display:block;width:84px}h1,h2{font-size:1.7rem}.msg{min-height:122px}.po{width:80px}}
+@media(prefers-reduced-motion:reduce){.hd,.ey,.bl,.ar,.te,.mt{animation:none!important}}
+
+textarea{height:auto;min-height:96px;padding:12px 18px;border-radius:22px;resize:none;line-height:1.3}
+/* ===== bubble ucapan beruang ===== */
+#sp{position:absolute;z-index:9;left:50%;top:calc(env(safe-area-inset-top,0px) + 14px);width:max-content;max-width:86%;translate:-50% -250%;background:#fff;color:#5b2447;font:800 1.1rem/1.25 'Baloo 2',system-ui,sans-serif;padding:12px 20px;border-radius:22px;box-shadow:0 8px 22px #0003;transition:translate .4s cubic-bezier(.3,1.7,.5,1)}
+#sp.on{translate:-50% 0}
+#sp.r{background:#ff3b3b;color:#fff}
+/* ===== reaksi beruang dipencet (data-p = 1..4) ===== */
+.bear[data-p],.bear[data-p] .ey{animation:none}
+.bear[data-p] .mn,.bear[data-p] .ms,.bear[data-p] .mh,.bear[data-p] .mt,.bear[data-p] .eh,.bear[data-p] .br{display:none}
+.bear[data-p="1"]{animation:k1 .6s}
+.bear[data-p="1"] .ey{transform:scale(1.35)}
+.bear[data-p="1"] .mh{display:inline}
+.bear[data-p="2"]{animation:k2 .5s}
+.bear[data-p="2"] .ey{transform:scaleY(.65)}
+.bear[data-p="2"] .br,.bear[data-p="2"] .ms{display:inline}
+.bear[data-p="3"],.bear[data-p="4"]{filter:hue-rotate(-12deg) saturate(1.6)}
+.bear[data-p="3"] .br,.bear[data-p="3"] .mt,.bear[data-p="4"] .br,.bear[data-p="4"] .mt{display:inline}
+.bear[data-p="3"] .ey,.bear[data-p="4"] .ey{transform:scaleY(.6)}
+.bear[data-p="3"] .bl,.bear[data-p="4"] .bl{fill:#ff2d2d;animation:none}
+.bear[data-p="3"]{animation:k3 .3s linear infinite}
+.bear[data-p="4"]{animation:k4 .12s linear infinite;filter:hue-rotate(-25deg) saturate(2.4) drop-shadow(0 0 12px #f00)}
+.bear[data-p="4"] .br{stroke-width:8}
+@keyframes k1{25%{transform:translateY(-34px) scale(.9,1.15)}50%{transform:scale(1.15,.85)}75%{transform:translateY(-10px)}}
+@keyframes k2{20%{transform:rotate(-8deg) scale(1.05)}60%{transform:rotate(6deg) scale(1.05)}}
+@keyframes k3{25%{transform:translateX(-5px) rotate(-3deg)}75%{transform:translateX(5px) rotate(3deg)}}
+@keyframes k4{25%{transform:translate(-9px,2px) rotate(-6deg) scale(1.2)}75%{transform:translate(9px,-2px) rotate(6deg) scale(1.2)}}
